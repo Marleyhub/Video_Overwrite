@@ -17,6 +17,6 @@ while True:
         print("Invalid URL. Please try again.") 
 
 
-        # Mudar o formato do arquivo de audio para .mp3 ai usamos uma AI para transcrever 
+        # Usar ffmpeg Mudar o formato do arquivo de audio para .mp3 ai usamos uma AI para transcrever 
         # Tenho a AI whisper para transcrição que funciona localmente e é simples de usar
         # Após a transcrição usamos qa gemini para resumir e organizar a transcrição 
