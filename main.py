@@ -27,7 +27,7 @@ while True:
         audio_output = f"converted_{output_name}.mp3"
 
         #convertendo audio 
-        comando_ffmpeg = ["ffmepg", "-i", audio_input, "-vn", "-ab", "192k", "-y", audio_output]
+        comando_ffmpeg = ["ffmpeg", "-i", audio_input, "-vn", "-ab", "192k", "-y", audio_output]
         subprocess.run(comando_ffmpeg)
 
         print(f"Áudio convertido com sucesso: {audio_output}")
