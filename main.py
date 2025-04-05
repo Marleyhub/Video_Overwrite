@@ -43,4 +43,4 @@ while True:
 
 
         # Usar a AI whisper para transcrição que funciona localmente e é simples de usar
-        # Após a transcrição usamos qa gemini para resumir e organizar a transcrição 
+        # Após a transcrição usamos qa gemini para resumir e organizar a transcrição git c
