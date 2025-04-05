@@ -20,15 +20,12 @@ while True:
         if not downloaded_files: 
             print("Fail: Couldn't find this audio")
             continue
-
         print(processo)                                                                     # printando output do comando cmd
 
         audio_input = downloaded_files[0]
         audio_output = f"converted_{output_name}.mp3"
-
         comando_ffmpeg = ["ffmpeg", "-i", audio_input, "-vn", "-ab", "192k", "-y", audio_output]     # comando cmd para converter formatos
         subprocess.run(comando_ffmpeg)  
-
         print(f"Áudio convertido com sucesso: {audio_output}")
 
         os.remove(audio_input)
