@@ -37,17 +37,7 @@ while True:
         whisper_model = whisper.load_model("base")
         result = whisper_model.transcribe(f"./{audio_output}")
         print(f"The output text is: \n {result['text']}")
-
-        #gpt4all config
-        gpt4all_model = GPT4All('ggml-gpt4all-j-v1.3-groovy.bin')
-        audio_data = result['text']
-        prompt = f"Crie um resumo organizado em tópicos com um índece e um título adequado desse texto '{audio_data}'"
-        gpt4all_output = gpt4all_model.generate(prompt)
-        print(f'The orgnized text of the audio: \n {gpt4all_output}')
-        break
-
-    else:
-        print("Invalid URL. Please try again.") 
+        
 
 
         
