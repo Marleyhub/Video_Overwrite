@@ -1,10 +1,11 @@
 
-import yt_dlp          # lib que permite comunicação e transferencia de dados com youtube
-import subprocess      # lib que permite rodar comandos cmd/powershell via codigo
-import validators      # lib para validar se a url é valida (não é obrigatório mas é recomendado)
-import glob            # lib para achar arquivos a partir da sua extensão
-import os              # lib para interagir com arquivos
-import whisper         # lib para transcrever audio // Obs: ultilizar python 3.10.9
+import yt_dlp               # lib que permite comunicação e transferencia de dados com youtube
+import subprocess           # lib que permite rodar comandos cmd/powershell via codigo
+import validators           # lib para validar se a url é valida (não é obrigatório mas é recomendado)
+import glob                 # lib para achar arquivos a partir da sua extensão
+import os                   # lib para interagir com arquivos
+import whisper              # lib para transcrever audio // Obs: ultilizar python 3.10.9
+from gpt4all import GPT4All # lib para organizar e resumir audio transcrito
 
 
 
