@@ -39,6 +39,7 @@ while True:
         print(f"The output text is: \n {result['text']}")
         break
     
+    
     else:
         print("Invalid URL. Please try again.")
         
