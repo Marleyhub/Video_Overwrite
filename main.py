@@ -37,6 +37,10 @@ while True:
         whisper_model = whisper.load_model("base")
         result = whisper_model.transcribe(f"./{audio_output}")
         print(f"The output text is: \n {result['text']}")
+        break
+    
+    else:
+        print("Invalid URL. Please try again.")
         
 
 
