@@ -1,3 +1,54 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
 .venv/
+venv/
+ENV/
+env/
+
+# Flask-specific files
+instance/
+*.pyc
+*.pyo
+
+# Environment variables
 .env
+.env.*
+
+# VS Code settings
 .vscode/
+
+# Mac OS
+.DS_Store
+
+# Pytest / coverage
+.coverage
+htmlcov/
+.tox/
+.nox/
+.cache/
+.pytest_cache/
+
+# MyPy / Pyright / Type checkers
+.mypy_cache/
+.pytype/
+
+# Logs
+*.log
+
+# pip / build
+pip-wheel-metadata/
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# SQLite database
+*.sqlite3
+*.db
+
+# Jupyter notebooks (optional, if not used)
+.ipynb_checkpoints/
