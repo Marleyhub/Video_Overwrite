@@ -36,7 +36,7 @@ def process_audio():
         return jsonify({"error": "Audio not found"}), 500
 
     audio_input = downloaded_files[0]
-    audio_output = f"converted_{output_name}.mp3"
+    audio_output = f"{output_name}.mp3"
     comando_ffmpeg = ["ffmpeg", "-i", audio_input, "-vn", "-ab", "192k", "-y", audio_output]
     subprocess.run(comando_ffmpeg)
     os.remove(audio_input)
@@ -44,18 +44,22 @@ def process_audio():
     whisper_model = whisper.load_model("base")
     result = whisper_model.transcribe(audio_output)
     transcript = result["text"]
-
-    load_dotenv()
-    genai.configure(api_key=os.getenv("API_KEY"))
-    genai_model = genai.GenerativeModel("gemini-pro")
-
-    prompt = f"Organize o seguinte texto em tópicos com numeração e títulos: \"\"\"{transcript}\"\"\""
-    response = genai_model.generate_content(prompt)
+    print(transcript)
 
     return jsonify({
         "transcript": transcript,
-        "summary": response.text
     })
+
+#    load_dotenv()
+#    genai.configure(api_key=os.getenv("API_KEY"))
+#   genai_model = genai.GenerativeModel("gemini-pro")
+#   prompt = f"Organize o seguinte texto em tópicos com numeração e títulos: \"\"\"{transcript}\"\"\""
+#   response = genai_model.generate_content(prompt)
+
+#    return jsonify({
+#        "transcript": transcript,
+#       "summary": response.text
+#   })
 
 if __name__ == "__main__":
     app.run(debug=True)
