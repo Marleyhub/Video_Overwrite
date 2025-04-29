@@ -47,19 +47,8 @@ def process_audio():
     print(transcript)
 
     return jsonify({
-        "transcript": transcript,
-    })
-
-#    load_dotenv()
-#    genai.configure(api_key=os.getenv("API_KEY"))
-#   genai_model = genai.GenerativeModel("gemini-pro")
-#   prompt = f"Organize o seguinte texto em tópicos com numeração e títulos: \"\"\"{transcript}\"\"\""
-#   response = genai_model.generate_content(prompt)
-
-#    return jsonify({
-#        "transcript": transcript,
-#       "summary": response.text
-#   })
+        "transcript": transcript
+   })
 
 if __name__ == "__main__":
     app.run(debug=True)
