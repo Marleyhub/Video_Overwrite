@@ -7,12 +7,16 @@ import os                                   # lib para interagir com arquivos
 import whisper                              # lib para transcrever audio // Obs: ultilizar python 3.10.9
 import google.generativeai as genai         # lib para organizar e resumir audio transcrito
 from dotenv import load_dotenv
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 
 
 app = Flask(__name__)
 CORS(app)
+
+@app.route("/")
+def index():
+    return render_template("index.html")  # Loads index.html from templates/
 
 @app.route("/process", methods=["POST"])
 def process_audio():
