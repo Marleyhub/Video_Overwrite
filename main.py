@@ -10,15 +10,15 @@ from dotenv import load_dotenv
 from google import genai
 
 
-
 app = Flask(__name__)
 CORS(app)
 
-
+## Home route
 @app.route("/")
 def index():
     return render_template("index.html") 
 
+## Processing audio route
 @app.route("/process", methods=["POST"])
 def process_audio():
     data = request.get_json()
