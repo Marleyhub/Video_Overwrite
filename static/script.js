@@ -40,5 +40,4 @@ async function processAudio() {
         "✅Summary:\n" + data.summary + "\n\n📋 \n";
     }
   }
-
- 
+  

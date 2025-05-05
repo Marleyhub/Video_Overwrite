@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import yt_dlp                                       # lib que permite comunicação e transferencia de dados com youtube
 import subprocess                                   # lib que permite rodar comandos cmd/powershell via codigo
@@ -6,11 +7,17 @@ import glob                                         # lib para achar arquivos a 
 import os                                           # lib para interagir com arquivos
 import whisper                                      # lib para transcrever audio // Obs: ultilizar python 3.10.9
 import google.generativeai as genai                 # lib para organizar e resumir audio transcrito
+=======
+import subprocess                                                       # lib que permite rodar comandos cmd/powershell via codigo
+import validators                                                       # lib para validar se a url é valida (não é obrigatório mas é recomendado)
+import glob                                                             # lib para achar arquivos a partir da sua extensão
+import os                                                               # lib para interagir com arquivos
+import whisper                                                          # lib para transcrever audio // Obs: ultilizar python 3.10.9
+>>>>>>> test_main
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify, render_template 
 from flask_cors import CORS
 from dotenv import load_dotenv
-import os
 from google import genai
 
 
@@ -57,24 +64,26 @@ def process_audio():
     whisper_model = whisper.load_model("base")
     result = whisper_model.transcribe(audio_output)
     transcript = result["text"]
-    print(transcript)
 
-    ##Generative AI
-    load_dotenv()
-    print(os.getenv("API_KEY"))
-    client = genai.Client(api_key=os.getenv("API_KEY"))
-
-    response = client.models.generate_content(
-    model="gemini-1.5-flash", 
-    contents="summarize the following text: " + transcript
-    )
-    summary = response.text
-    print(summary)
+    ##generative AI
+    summary = genAi(transcript)
 
     return jsonify({
         "summary": summary,
         "transcript": transcript
    })
+
+## Generative AI to summarize text
+def genAi(transcript):
+    load_dotenv()
+    client = genai.Client(api_key=os.getenv("API_KEY"))
+    response = client.models.generate_content(
+    model="gemini-1.5-flash",
+    contents="Summarize the following text, add topics if it has more than 100 words and a index it with the titles of each topic, index should apear first:" + transcript
+    )
+    summary = response.text
+    return summary
+
 
 if __name__ == "__main__":
     app.run(debug=True)
