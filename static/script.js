@@ -36,7 +36,8 @@ async function processAudio() {
       document.getElementById("output").innerText = "❌ " + data.error;
     } else {
       document.getElementById("output").innerText =
-        "✅ Transcription:\n" + data.transcript + "\n\n📋 \n";
+        "✅ Transcription:\n" + data.transcript + "\n\n📋 \n" +
+        "✅Summary:\n" + data.summary + "\n\n📋 \n";
     }
   }
 

@@ -9,14 +9,19 @@ import google.generativeai as genai                 # lib para organizar e resum
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify, render_template 
 from flask_cors import CORS
+from dotenv import load_dotenv
+import os
+from google import genai
+
 
 
 app = Flask(__name__)
 CORS(app)
 
+
 @app.route("/")
 def index():
-    return render_template("index.html")  # Loads index.html from templates/
+    return render_template("index.html") 
 
 @app.route("/process", methods=["POST"])
 def process_audio():
@@ -29,24 +34,45 @@ def process_audio():
     if not validators.url(url):
         return jsonify({"error": "Invalid URL"}), 400
 
-    subprocess.run(comando_yt_audio)
+    ##Running yt-dlp command to download audio
+    try:
+        subprocess.run(comando_yt_audio, check=True)
+    except subprocess.CalledProcessError as e:
+        return jsonify({"error": "Failed to download audio"}), 500
+    ##finding the downloaded file
     downloaded_files = glob.glob(f"{output_name}.*")
 
+    ##Check if the file was downloaded
     if not downloaded_files:
         return jsonify({"error": "Audio not found"}), 500
 
+    ##Input and output data
     audio_input = downloaded_files[0]
     audio_output = f"{output_name}.mp3"
     comando_ffmpeg = ["ffmpeg", "-i", audio_input, "-vn", "-ab", "192k", "-y", audio_output]
     subprocess.run(comando_ffmpeg)
     os.remove(audio_input)
 
+    ##Local Whisper
     whisper_model = whisper.load_model("base")
     result = whisper_model.transcribe(audio_output)
     transcript = result["text"]
     print(transcript)
 
+    ##Generative AI
+    load_dotenv()
+    print(os.getenv("API_KEY"))
+    client = genai.Client(api_key=os.getenv("API_KEY"))
+
+    response = client.models.generate_content(
+    model="gemini-1.5-flash", 
+    contents="summarize the following text: " + transcript
+    )
+    summary = response.text
+    print(summary)
+
     return jsonify({
+        "summary": summary,
         "transcript": transcript
    })
 
