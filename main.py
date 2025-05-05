@@ -9,14 +9,19 @@ import google.generativeai as genai         # lib para organizar e resumir audio
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
+from dotenv import load_dotenv
+import os
+from google import genai
+
 
 
 app = Flask(__name__)
 CORS(app)
 
+
 @app.route("/")
 def index():
-    return render_template("index.html")  # Loads index.html from templates/
+    return render_template("index.html") 
 
 @app.route("/process", methods=["POST"])
 def process_audio():
