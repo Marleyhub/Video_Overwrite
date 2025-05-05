@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="/static/script.js" defer></script>
   </head>
-<body class="h-screen flex items-center justify-center bg-blue-900 p-6">
+  <body class="min-h-screen bg-blue-900 p-6 flex items-center justify-center">
   <div class="max-w-xl mx-auto bg-white p-8 rounded shadow">
     <h1 class="text-2xl font-bold mb-4">YouTube Audio Transcriber</h1>
     
@@ -20,7 +20,7 @@
     <button onclick="processAudio()" class="bg-blue-600 text-white px-4 py-2 rounded">Submit</button>
 
     <div id="loading" class="mt-4 text-gray-600 hidden">Processing...</div>
-    <div id="output" class="mt-4 whitespace-pre-wrap"></div>
+    <div id="output" class="mt-4 whitespace-pre-wrap max-h-[300px] overflow-auto bg-gray-50"></div>
   </div>
 
   <script src="/static/script.js" defer></script>
