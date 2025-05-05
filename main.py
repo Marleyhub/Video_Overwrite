@@ -42,14 +42,14 @@ def process_audio():
     if not downloaded_files:
         return jsonify({"error": "Audio not found"}), 500
 
-    ##Input and output data
+    ##Converting to .mp3
     audio_input = downloaded_files[0]
     audio_output = f"{output_name}.mp3"
     comando_ffmpeg = ["ffmpeg", "-i", audio_input, "-vn", "-ab", "192k", "-y", audio_output]
     subprocess.run(comando_ffmpeg)
     os.remove(audio_input)
 
-    ##Local Whisper
+    ##Transcripting
     whisper_model = whisper.load_model("base")
     result = whisper_model.transcribe(audio_output)
     transcript = result["text"]

@@ -14,7 +14,7 @@ body {
   }
   
   button:hover {
-    background-color: #2563eb; /* Tailwind blue-600 dark */
+    background-color: #252ceb; /* Tailwind blue-600 dark */
   }
   
   #output {
